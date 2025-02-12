@@ -2,8 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**/src/main/java/org.example/TokenBot.java
-
+TelegramBot/src/main/java/org/example/TokenBot.java
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
