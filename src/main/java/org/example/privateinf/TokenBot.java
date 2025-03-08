@@ -1,4 +1,4 @@
-package org.example;
+package org.example.privateinf;
 
 public class TokenBot {
 
