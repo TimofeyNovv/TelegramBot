@@ -37,4 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-!**/src/main/java/org/example/privateinf/
+src/main/java/org/example/privateinf/PrivateInfDB.java
+src/main/java/org/example/privateinf/TokenBot.java
