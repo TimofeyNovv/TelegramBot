@@ -9,6 +9,6 @@ public class TokenBot {
 
     //геттер для токена бота
     public String getBotToken() {
-        return "7898646187:AAGNCnZId1VwncjXuZyFXQ_8ysgWTn5nZAM";
+        return ".";
     }
 }
