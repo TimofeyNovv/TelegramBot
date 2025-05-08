@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.database.QuestionsTGBotDB;
 import org.example.privateinf.TokenBot;
+import org.example.view.Button;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -20,6 +21,8 @@ public class MyBot extends TelegramLongPollingBot {
 
     //Переменная, хранящая, отправляемое сообщение
     private SendMessage otpravMessage = null;
+
+    private Button button;
 
     //Переменная, хранящая, отправляемое сообщение
     private SendPhoto otpravPhoto = null;
@@ -59,25 +62,7 @@ public class MyBot extends TelegramLongPollingBot {
     public String getBotToken() {
         return tokenBot.getBotToken();
     }
-
-//------------------------------------Метод для создания кнопок--------------------------------------------------------
-    public void ReplKeyBMark(SendMessage message) {
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setResizeKeyboard(false);
-
-        List<KeyboardRow> keyboard = new ArrayList<>();
-        KeyboardRow row = new KeyboardRow();
-        //добавление кнопок
-        row.add("Информация");
-        row.add("Вопросы из ОГЭ по математике");
-        row.add("Вопросы из ОГЭ по физике");
-        row.add("Вопросы из ОГЭ по информатике");
-        keyboard.add(row);
-        replyKeyboardMarkup.setKeyboard(keyboard);
-        message.setReplyMarkup(replyKeyboardMarkup);
-    }
+    
 
 //--------------------------------Метод для обработки вводимых команд--------------------------------------------------------
     @Override
@@ -90,7 +75,7 @@ public class MyBot extends TelegramLongPollingBot {
             if (messageText.equals("/start")) {
                 expectedAnswers.put(chatId, null);
                 otpravMessage =  createMessage(chatId, "Привет! Нажми на кнопку, чтобы получить сообщение.");
-                ReplKeyBMark(otpravMessage);
+                button.ReplKeyBMark(otpravMessage);
                 try {
                     execute(otpravMessage);
                 } catch (TelegramApiException e) {
@@ -201,7 +186,7 @@ public class MyBot extends TelegramLongPollingBot {
                     //Отсылаю сообщение с картинкой или без
                     if (otpravPhoto == null) {
                         execute(otpravMessage);
-                        otpravMessage = null;
+                        otpravMessage  = null;
                     } else {
                         execute(otpravPhoto);
                         otpravPhoto = null;
@@ -215,7 +200,7 @@ public class MyBot extends TelegramLongPollingBot {
 //-----------------------------------Если введённое пользователем равно ответ-------------------------------------------
             else if (messageText.toLowerCase().equals("ответ") && expectedAnswers.get(chatId) != null) {
                 otpravMessage = createMessage(chatId, "Правильный ответ - " + expectedAnswers.get(chatId));
-                ReplKeyBMark(otpravMessage);
+                button.ReplKeyBMark(otpravMessage);
                 try {
                     execute(otpravMessage);
                 } catch (TelegramApiException e) {
@@ -230,7 +215,7 @@ public class MyBot extends TelegramLongPollingBot {
                 if (expectedAnswerOzhid != null && messageText.equalsIgnoreCase(expectedAnswerOzhid)) {
                     otpravMessage = createMessage(chatId, "Правильно.");
                     expectedAnswers.remove(chatId);
-                    ReplKeyBMark(otpravMessage);
+                    button.ReplKeyBMark(otpravMessage);
                     expectedAnswers.put(chatId, null);
                 } else {
                     otpravMessage = createMessage(chatId, "Неправильно, если хотите узнать правильный ответ, напишите ответ.");
@@ -245,7 +230,7 @@ public class MyBot extends TelegramLongPollingBot {
 //-----------------------------------Если пользователь ввёл не команду---------------------------------------------------
             else {
                 otpravMessage = createMessage(chatId, "Пожалуйста введите команду /start или нажмите на кнопки.");
-                ReplKeyBMark(otpravMessage);
+                button.ReplKeyBMark(otpravMessage);
                 try {
                     execute(otpravMessage);
                 } catch (TelegramApiException e) {

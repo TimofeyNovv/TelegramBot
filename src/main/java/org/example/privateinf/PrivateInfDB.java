@@ -1,7 +1,7 @@
 package org.example.privateinf;
 
 public class PrivateInfDB {
-    String url = "jdbc:postgresql://localhost:5433/QuestionsTGBot";
+    String url = "jdbc:postgresql://localhost:5432/questionsTGBot";
     String name = "postgres";
     String password = "timn2020";
 
