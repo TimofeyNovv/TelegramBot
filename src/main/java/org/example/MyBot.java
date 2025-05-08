@@ -62,7 +62,7 @@ public class MyBot extends TelegramLongPollingBot {
     public String getBotToken() {
         return tokenBot.getBotToken();
     }
-    
+
 
 //--------------------------------Метод для обработки вводимых команд--------------------------------------------------------
     @Override
