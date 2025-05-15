@@ -1,14 +1,18 @@
 package org.example.privateinf;
 
-public class TokenBot {
+import io.github.cdimascio.dotenv.Dotenv;
 
-    //геттер для имени бота
+public class TokenBot {
+    Dotenv dotenv = Dotenv.load();
+
+    private String BotToken = dotenv.get("BOT_TKN");
+    private String BotUsername = dotenv.get("BOT_NM");
+
     public String getBotUsername() {
-        return "OGE questions";
+        return BotUsername;
     }
 
-    //геттер для токена бота
     public String getBotToken() {
-        return "7898646187:AAGNCnZId1VwncjXuZyFXQ_8ysgWTn5nZAM";
+        return BotToken;
     }
 }

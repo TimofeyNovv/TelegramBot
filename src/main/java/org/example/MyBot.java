@@ -22,8 +22,6 @@ public class MyBot extends TelegramLongPollingBot {
     //Переменная, хранящая, отправляемое сообщение
     private SendMessage otpravMessage = null;
 
-    private Button button;
-
     //Переменная, хранящая, отправляемое сообщение
     private SendPhoto otpravPhoto = null;
 
@@ -37,6 +35,7 @@ public class MyBot extends TelegramLongPollingBot {
     //Создаю Hashmap для проверки на соответствие в ней будет содержаться правильный ответ
     private Map<Long, String> expectedAnswers = new HashMap<>();
 
+    private Button button = new Button();
 
     //метод для создания сообщения
     private SendMessage createMessage(long chatId, String text) {

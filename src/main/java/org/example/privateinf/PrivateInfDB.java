@@ -1,9 +1,12 @@
 package org.example.privateinf;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class PrivateInfDB {
-    String url = "jdbc:postgresql://localhost:5432/questionsTGBot";
-    String name = "postgres";
-    String password = "timn2020";
+    Dotenv dotenv = Dotenv.load();
+    String url = dotenv.get("URL_DB");
+    String name = dotenv.get("DB_NM");
+    String password = dotenv.get("DB_PS");
 
     public String getUrl() {
         return url;
